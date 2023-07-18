@@ -1,4 +1,4 @@
-import { Image, ImageBackground, StyleSheet } from 'react-native';
+import { Image, ImageBackground, ScrollView, StyleSheet } from 'react-native';
 import BarberCalendar from '../../components/calendar';
 
 import { Text, View } from '../../components/Themed';
@@ -13,7 +13,10 @@ export default function TabTwoScreen() {
         </View>
       </ImageBackground>
       <View style={styles.stars}></View>
-      <BarberCalendar />
+      <ScrollView style={styles.calendar}>
+        <BarberCalendar />
+
+      </ScrollView>
     </View>
   );
 }
@@ -68,5 +71,8 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 0,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+  },
+  calendar: {
+    width: '100%'
   }
 });

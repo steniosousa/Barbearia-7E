@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
 const BarberCalendar = () => {
@@ -8,12 +8,9 @@ const BarberCalendar = () => {
 
     // Simulação de dados para os horários disponíveis
     const availableTimesData = {
-        '2023-09-18': ['10:00', '11:00', '15:00'],
-        '2023-09-02': ['12:00', '14:00', '17:00'],
+        '2023-07-18': ['10:00', '11:00', '15:00', '18:00', '20:00'],
         // Adicione mais datas e horários disponíveis aqui...
     };
-
-
 
     useEffect(() => {
         // Ao selecionar uma data, atualiza os horários disponíveis
@@ -39,48 +36,77 @@ const BarberCalendar = () => {
         markedDates[date] = { ...disabledDates[date], textColor: 'red' };
     });
 
+    function marker(datas) {
+        console.log(datas)
+    }
     return (
-        <View style={styles.container}>
+        <ScrollView>
+
             <Calendar
                 onDayPress={handleDateSelect}
                 markedDates={{ [selectedDate]: { selected: true } }}
                 markedDates={markedDates}
                 style={styles.calendar}
             />
+
+            <Text style={styles.Title}>Horários:</Text>
             <View style={styles.availableTimesContainer}>
                 {availableTimes.length > 0 ? (
                     availableTimes.map((time) => (
-                        <Text key={time} style={styles.availableTime}>
-                            {time}
-                        </Text>
+                        <TouchableOpacity key={time} onPress={() => marker(time)}>
+
+                            <Text style={styles.availableTime}>
+                                {time}hrs
+                            </Text>
+                        </TouchableOpacity>
                     ))
                 ) : (
                     <Text style={{ color: 'white' }}>Nenhum horário disponível para esta data.</Text>
                 )}
             </View>
-        </View>
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        flex: 1,
-        justifyContent: 'center',
+        width: '200%',
         alignItems: 'center',
+        backgroundColor: 'red',
+
     },
     calendar: {
         width: '100%'
     },
     availableTimesContainer: {
         marginTop: 20,
-        justifyContent: 'center',
         alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        height: 100,
+        flexWrap: 'wrap'
+    },
+    Title: {
+        fontSize: 18,
+        marginBottom: 10,
+        color: 'white',
+        backgroundColor: 'red',
+        paddingTop: 7,
+        paddingBottom: 7,
+        paddingLeft: 25,
+        paddingRight: 25,
+        borderRadius: 5,
     },
     availableTime: {
         fontSize: 18,
         marginBottom: 10,
-        color: 'white'
+        color: 'white',
+        margin: 5,
+        paddingTop: 7,
+        paddingBottom: 7,
+        paddingLeft: 25,
+        paddingRight: 25,
     },
 });
 
