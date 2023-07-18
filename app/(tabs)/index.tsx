@@ -1,14 +1,36 @@
-import { StyleSheet } from 'react-native';
+import { Image, ScrollView, StyleSheet } from 'react-native';
+import BarberServiceCard from '../../components/Cards';
+import Select from '../../components/selects';
 
-import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <View style={styles.selects}>
+        <Select Value={'Barba'} />
+        <Select Value={'Cabelo'} />
+        <Select Value={'Sombrancelha'} />
+      </View>
+      <ScrollView style={styles.home} showsVerticalScrollIndicator={false}>
+        <BarberServiceCard
+          service="Corte de Cabelo"
+          value={30}
+          backgroundImage={require('../../assets/images/barbeiro.png')}
+        />
+        <BarberServiceCard
+          service="Corte de barba"
+          value={30}
+          backgroundImage={require('../../assets/images/barba.jpg')}
+        />
+        <BarberServiceCard
+          service="Corte de barba"
+          value={30}
+          backgroundImage={require('../../assets/images/corteX.jpg')}
+        />
+      </ScrollView>
+
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
     </View>
   );
 }
@@ -17,7 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 30,
   },
   title: {
     fontSize: 20,
@@ -28,4 +50,15 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  selects: {
+    display: 'flex',
+    flexDirection: 'row',
+    height: 40,
+    gap: 2,
+  },
+  home: {
+    margin: 10,
+    marginTop: 40,
+    width: '100%'
+  }
 });

@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id           String        @unique @default(uuid())
+  name         String
+  phone        String
+  email        String        @unique
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  appointments Appointment[]
+}
+
+model Service {
+  id          String        @unique @default(uuid())
+  name        String
+  cost        Int
+  Appointment Appointment[]
+}
+
+model Appointment {
+  id          String            @unique @default(uuid())
+  date        DateTime
+  description String?
+  status      AppointmentStatus @default(ACTIVE)
+  Client      Client            @relation(fields: [ClientId], references: [id])
+  service     Service           @relation(fields: [ServiceId], references: [id]) // Atualização aqui
+  ServiceId   String
+  ClientId    String
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+enum AppointmentStatus {
+  ACTIVE
+  CANCELLED
+  COMPLETED
+}

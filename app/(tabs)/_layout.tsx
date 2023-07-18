@@ -22,10 +22,12 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
       }}>
+
+
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
+          title: 'Escolha sua especialidade',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -51,5 +53,6 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+
   );
 }
