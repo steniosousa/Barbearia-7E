@@ -6,16 +6,15 @@ import { Text, View } from '../../components/Themed';
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-      <ImageBackground source={require('../../assets/images/corteX.jpg')} style={styles.cardBackground} >
+      {/* <ImageBackground source={require('../../assets/images/corteX.jpg')} style={styles.cardBackground} >
         <View style={styles.cardContent}>
           <Text style={styles.serviceName}>Corte Social</Text>
           <Text style={styles.serviceValue}>R$ 30,00</Text>
         </View>
-      </ImageBackground>
-      <View style={styles.stars}></View>
+      </ImageBackground> */}
+      {/* <View style={styles.stars}></View> */}
       <ScrollView style={styles.calendar}>
         <BarberCalendar />
-
       </ScrollView>
     </View>
   );
@@ -51,7 +50,6 @@ const styles = StyleSheet.create({
     textShadowColor: '#000',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
-    fontFamily: 'Roboto-Bold',
 
 
   },

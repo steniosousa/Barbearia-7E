@@ -33,7 +33,7 @@ const BarberCalendar = () => {
 
     // Adiciona estilo personalizado para datas desabilitadas
     Object.keys(disabledDates).forEach((date) => {
-        markedDates[date] = { ...disabledDates[date], textColor: 'red' };
+        markedDates[date] = { ...disabledDates[date], selected: false, };
     });
 
     function marker(datas) {
@@ -44,7 +44,6 @@ const BarberCalendar = () => {
 
             <Calendar
                 onDayPress={handleDateSelect}
-                markedDates={{ [selectedDate]: { selected: true } }}
                 markedDates={markedDates}
                 style={styles.calendar}
             />

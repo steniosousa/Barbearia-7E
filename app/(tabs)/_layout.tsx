@@ -27,7 +27,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Escolha sua especialidade',
+          title: 'Especialidades',
           tabBarIcon: ({ color }) => <Ionicons name="options" size={24} color="white" />,
           headerRight: () => (
             <Link href="/Perfil" asChild>
@@ -47,8 +47,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Agendar',
+          tabBarIcon: ({ color }) => <AntDesign name="calendar" size={24} color="white" />,
         }}
       />
     </Tabs>

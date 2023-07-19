@@ -1,17 +1,24 @@
-import { Image, ScrollView, StyleSheet } from 'react-native';
+
+import { PickerIOS } from '@react-native-picker/picker';
+import { useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
 import BarberServiceCard from '../../components/Cards';
 import Select from '../../components/selects';
 
 import { Text, View } from '../../components/Themed';
 
 export default function TabOneScreen() {
+  const [selectedValue, setSelectedValue] = useState('option1');
+
   return (
     <View style={styles.container}>
-      <View style={styles.selects}>
+
+      {/* <View style={styles.selects}>
         <Select Value={'Barba'} />
         <Select Value={'Cabelo'} />
         <Select Value={'Sombrancelha'} />
-      </View>
+      </View> */}
+
       <ScrollView style={styles.home} showsVerticalScrollIndicator={false}>
         <BarberServiceCard
           service="Corte de Cabelo"
@@ -39,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 10,
   },
   title: {
     fontSize: 20,
