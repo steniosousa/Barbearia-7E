@@ -1,6 +1,6 @@
 import { AntDesign } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { Image, Platform, ScrollView, StyleSheet, useColorScheme } from 'react-native';
+import { Image, Platform, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
 import CardsPerfil from '../components/cardsPerfil';
 import { Text, View } from '../components/Themed';
 import Colors from '../constants/Colors';
@@ -22,6 +22,13 @@ export default function ModalScreen() {
       <ScrollView>
         <CardsPerfil></CardsPerfil>
       </ScrollView>
+      <SafeAreaView style={styles.buttonSingOut}>
+        <TouchableOpacity style={styles.ViewSingOut}>
+          <Text style={styles.TextSingOut}>Sair</Text>
+        </TouchableOpacity>
+
+
+      </SafeAreaView>
     </View>
   );
 }
@@ -44,4 +51,25 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  buttonSingOut: {
+    width: '80%',
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  ViewSingOut: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 40,
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5
+
+  },
+  TextSingOut: {
+    color: 'black',
+    fontSize: 16
+  },
+
 });

@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { useFonts } from 'expo-font';
 
 export default function TabTwoScreen() {
-  const [availableTimes, setAvailableTimes] = useState([0]);
   const [fontsLoaded] = useFonts({
     'Josefin-Sans': require('../../assets/fonts/static/JosefinSans-Bold.ttf'),
   });

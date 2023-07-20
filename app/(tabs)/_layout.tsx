@@ -51,6 +51,12 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <AntDesign name="calendar" size={24} color="white" />,
         }}
       />
+      <Tabs.Screen
+        name="SingIn"
+        options={{
+          tabBarIcon: ({ color }) => <AntDesign name="calendar" size={24} color="white" />,
+        }}
+      />
     </Tabs>
 
   );
