@@ -33,7 +33,9 @@ const BarberServiceCard: React.FC<Props> = ({ service, value, backgroundImage })
                     <View style={styles.cardContent}>
                         <Text style={styles.serviceName}>{service}</Text>
                         <View style={styles.ViewserviceValue}>
-                            <Text style={styles.serviceValue}>R$ {value}</Text>
+                            <View style={styles.ViewPrice}>
+                                <Text style={styles.serviceValue}>R$ {value}</Text>
+                            </View>
                             <View style={styles.line}></View>
                         </View>
                     </View>
@@ -91,12 +93,15 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: 'black',
         fontWeight: 'bold',
-        backgroundColor: 'white',
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 5,
         paddingBottom: 5,
-        borderRadius: 30
+    },
+    ViewPrice: {
+        backgroundColor: 'white',
+        borderRadius: 20
+
     },
     shadowOverlay: {
         ...StyleSheet.absoluteFillObject,

@@ -1,23 +1,29 @@
 
-import { PickerIOS } from '@react-native-picker/picker';
 import { useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import BarberServiceCard from '../../components/Cards';
-import Select from '../../components/selects';
-
-import { Text, View } from '../../components/Themed';
-
+import { View } from '../../components/Themed';
+import RNPickerSelect from 'react-native-picker-select';
 export default function TabOneScreen() {
-  const [selectedValue, setSelectedValue] = useState('option1');
+  const [selectedValue, setSelectedValue] = useState('Buscar especialidade');
+  const pickerItems = [
+    { label: 'Buscar especialidade', value: 'Buscar especialidade' },
+    { label: 'Opção 1', value: 'option1' },
+  ];
 
   return (
     <View style={styles.container}>
 
-      {/* <View style={styles.selects}>
-        <Select Value={'Barba'} />
-        <Select Value={'Cabelo'} />
-        <Select Value={'Sombrancelha'} />
-      </View> */}
+
+      <View style={styles.selects}>
+
+        <RNPickerSelect
+          onValueChange={(itemValue) => setSelectedValue(itemValue)}
+          items={pickerItems}
+          style={pickerSelectStyles}
+          value={selectedValue}
+        />
+      </View>
 
       <ScrollView style={styles.home} showsVerticalScrollIndicator={false}>
         <BarberServiceCard
@@ -37,12 +43,13 @@ export default function TabOneScreen() {
         />
       </ScrollView>
 
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
+
   container: {
     flex: 1,
     alignItems: 'center',
@@ -58,14 +65,37 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   selects: {
-    display: 'flex',
-    flexDirection: 'row',
-    height: 40,
-    gap: 2,
+    width: '90%',
+    marginTop: 5,
   },
   home: {
     margin: 10,
     marginTop: 40,
     width: '100%'
   }
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    width: '100%',
+    height: 40,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  inputAndroid: {
+    width: '100%',
+    height: 40,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    color: 'white',
+    alignSelf: 'center'
+  },
 });
