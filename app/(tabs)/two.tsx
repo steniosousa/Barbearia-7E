@@ -4,12 +4,9 @@ import RNPickerSelect from 'react-native-picker-select';
 
 import { Text, View } from '../../components/Themed';
 import { useState } from 'react';
-import { useFonts } from 'expo-font';
 
 export default function TabTwoScreen() {
-  const [fontsLoaded] = useFonts({
-    'Josefin-Sans': require('../../assets/fonts/static/JosefinSans-Bold.ttf'),
-  });
+
   const [selectedValue, setSelectedValue] = useState('Buscar Serviço');
   const pickerItems = [
     { label: 'Buscar Serviço', value: 'Buscar Serviço' },
@@ -92,7 +89,6 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   Hors: {
-    backgroundColor: '#8a8887',
     width: '100%',
     paddingTop: 7,
     paddingBottom: 7,
@@ -130,7 +126,7 @@ const styles = StyleSheet.create({
   textButtonSend: {
     color: 'black',
     fontSize: 17,
-    fontFamily: 'Josefin-Sans',
+    fontStyle: 'italic',
     fontWeight: '700'
   }
 });

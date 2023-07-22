@@ -24,7 +24,7 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
       }}>
-      <Tabs.Screen
+      {'Admin' != 'Admin' ? (<Tabs.Screen
         name="index"
         options={{
           title: 'Especialidades',
@@ -43,7 +43,27 @@ export default function TabLayout() {
             </Link>
           ),
         }}
-      />
+      />) : (<Tabs.Screen
+        name="index"
+        options={{
+          title: 'Especialidades',
+          tabBarIcon: ({ color }) => <Ionicons name="options" size={24} color="white" />,
+          headerRight: () => (
+            <Link href="/PerfilAdmin" asChild>
+              <Pressable>
+                {({ pressed }) => (
+                  <AntDesign name="user"
+                    size={25}
+                    color={Colors[colorScheme ?? 'light'].text}
+                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />)}
+
       <Tabs.Screen
         name="two"
         options={{

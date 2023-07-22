@@ -2,36 +2,58 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import RNPickerSelect from 'react-native-picker-select';
+
+
+type formObjCalendarMarker = {
+    disabled: boolean,
+    disableTouchEvent: boolean,
+    selected: boolean
+}
 const BarberCalendar = () => {
     const [selectedDate, setSelectedDate] = useState('');
+    const [selectedValue, setSelectedValue] = useState('Buscar especialidade');
     const [availableTimes, setAvailableTimes] = useState([]);
-
-    const availableTimesData = {
+    const [disabledAndMarkedDates, setDisabledAndMarkedDates] = useState<
+        Record<string, formObjCalendarMarker>
+    >({});
+    const availableTimesData: any = {
         '2023-07-18': ['10:00', '11:00', '15:00', '18:00', '20:00'],
         '2023-07-19': ['10:00', '11:00', '15:00', '18:00', '20:00'],
-    };
-    const handleDateSelect = (date) => {
-        setSelectedDate(date.dateString);
+
     };
 
-    const disabledDates = {
-        '2023-07-20': { disabled: true, disableTouchEvent: true }, // Desabilita o dia 20 de julho de 2023
-        '2023-07-25': { disabled: true, disableTouchEvent: true },
-        // Adicione mais datas desabilitadas conforme necessário...
+    const markedDates: any = {};
+
+    // const disabledAndMarkedDates: any = {
+    //     '2023-07-20': { disabled: true, disableTouchEvent: true, selected: true },
+    //     '2023-07-25': { disabled: true, disableTouchEvent: true, selected: false },
+
+    // };
+
+    const addDateEntry = (dateString: string) => {
+        if (disabledAndMarkedDates.hasOwnProperty(dateString)) {
+            setDisabledAndMarkedDates({});
+            return
+        }
+        const newEntry: formObjCalendarMarker = {
+            disabled: false,
+            disableTouchEvent: false,
+            selected: true,
+        };
+        setDisabledAndMarkedDates({
+            [dateString]: newEntry,
+        });
     };
 
-    const markedDates = {};
-    // Adiciona estilo personalizado para datas desabilitadas
-    Object.keys(disabledDates).forEach((date) => {
-        markedDates[date] = { ...disabledDates[date], selected: false, };
+    Object.keys(disabledAndMarkedDates).forEach((date) => {
+
+        markedDates[date] = { ...disabledAndMarkedDates[date] }
     });
 
-    function marker(datas) {
-        console.log(datas)
-    }
-
-
-
+    const handleDateSelect = (date: any) => {
+        addDateEntry(date.dateString);
+        setSelectedDate(date.dateString);
+    };
 
     useEffect(() => {
         if (selectedDate) {
@@ -51,11 +73,7 @@ const BarberCalendar = () => {
 
 
 
-    const [selectedValue, setSelectedValue] = useState('Buscar especialidade');
-    const pickerItems = [
-        { label: 'Buscar especialidade', value: 'Buscar especialidade' },
-        { label: 'Opção 1', value: 'option1' },
-    ];
+
 
     return (
         <View >
@@ -71,7 +89,7 @@ const BarberCalendar = () => {
                     <Text style={styles.Title}>Horários:</Text>
                     <RNPickerSelect
                         onValueChange={(itemValue) => setSelectedValue(itemValue)}
-                        items={availableTimes.map((time) => ({ label: time, value: time }))} // Converte os horários em objetos { label, value } para o Picker
+                        items={availableTimes.map((time) => ({ label: time, value: time }))}
                         style={pickerSelectStyles}
                         value={selectedValue}
                     />
@@ -94,7 +112,6 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     Hors: {
-        backgroundColor: '#8a8887',
         paddingTop: 7,
         paddingBottom: 7,
         paddingLeft: 25,

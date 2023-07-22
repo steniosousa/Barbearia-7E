@@ -4,6 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useMemo } from 'react';
 import { Platform, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
 import CardsPerfil from '../components/cardsPerfil';
+import BarberCalendarAdmin from '../components/SpaceAdmin/CalendarAdmin';
+import RegisterServices from '../components/SpaceAdmin/RegisterServices';
 import { Text, View } from '../components/Themed';
 import Colors from '../constants/Colors';
 
@@ -38,18 +40,17 @@ export default function ModalScreen() {
           color={Colors[colorScheme ?? 'light'].text}
           style={styles.photoUser}
         />
-        <Text>Stênio Sousa Fonteles</Text>
+        <Text>Administrador</Text>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <Text>faltam 3 serviços para 1 grátis</Text>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <CardsPerfil />
+        <Text>X serviços esse mês</Text>
+        <ScrollView style={styles.scrollBody} showsVerticalScrollIndicator={false}>
+          <BarberCalendarAdmin />
+          {/* <RegisterServices /> */}
         </ScrollView>
-        <SafeAreaView style={styles.buttonSingOut}>
+        <SafeAreaView style={styles.buttonSingOut} >
           <TouchableOpacity style={buttonSingOut.ViewSingOut}>
-            <Text style={buttonSingOut.TextSingOut}>Sair</Text>
+            <Text style={buttonSingOut.TextSingOut}>Salvar</Text>
           </TouchableOpacity>
-
-
         </SafeAreaView>
       </View>
     </ThemeProvider >
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: 30,
+    marginVertical: 15,
     height: 1,
     width: '80%',
   },
@@ -80,6 +81,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-
+  scrollBody: {
+    width: '90%',
+    marginTop: 10,
+  }
 
 });
